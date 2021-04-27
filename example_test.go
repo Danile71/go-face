@@ -11,11 +11,11 @@ import (
 // Path to directory with models and test images. Here it's assumed it
 // points to the <https://github.com/Kagami/go-face-testdata> clone.
 const dataDir = "testdata"
-const cnn = "testdata/mmod_human_face_detector.dat"
-const shape = "testdata/shape_predictor_5_face_landmarks.dat"
-const descr = "testdata/dlib_face_recognition_resnet_model_v1.dat"
-const gender = "testdata/dnn_gender_classifier_v1.dat"
-const age = "testdata/dnn_age_predictor_v1.dat"
+const cnn = "testdata/models/mmod_human_face_detector.dat"
+const shape = "testdata/models/shape_predictor_5_face_landmarks.dat"
+const descr = "testdata/models/dlib_face_recognition_resnet_model_v1.dat"
+const gender = "testdata/models/dnn_gender_classifier_v1.dat"
+const age = "testdata/models/dnn_age_predictor_v1.dat"
 
 // This example shows the basic usage of the package: create an
 // recognizer, recognize faces, classify them using few known ones.
@@ -40,7 +40,7 @@ func Example_basic() {
 	rec.SetJittering(20)
 
 	// Test image with 10 faces.
-	testImagePristin := filepath.Join(dataDir, "pristin.jpg")
+	testImagePristin := filepath.Join(dataDir, "images", "pristin.jpg")
 	// Recognize faces on that image.
 	faces, err := rec.DetectFromFile(testImagePristin)
 	if err != nil {
@@ -70,7 +70,7 @@ func Example_basic() {
 	rec.SetSamples(samples, cats)
 
 	// Now let's try to classify some not yet known image.
-	testImageNayoung := filepath.Join(dataDir, "nayoung.jpg")
+	testImageNayoung := filepath.Join(dataDir, "images", "nayoung.jpg")
 	nayoungFace, err := rec.DetectFromFile(testImageNayoung)
 	if err != nil {
 		log.Fatalf("Can't recognize: %v", err)
